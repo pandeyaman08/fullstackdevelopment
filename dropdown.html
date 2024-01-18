@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Selector</title>
+  <script>
+    var countries = ["Select Country", "USA", "India"];
+    var usaStates = ["Select State", "California", "New York", "Texas"];
+    var canadaStates = ["Select State", "Ontario", "Quebec", "Alberta"];
+    var indiaStates = ["Select State", "Maharashtra", "Karnataka", "Delhi"];
+    var californiaCities = ["Select City", "Los Angeles", "San Francisco", "San Diego"];
+    var newyorkCities = ["Select City", "New York City", "Buffalo", "Rochester"];
+    var texasCities = ["Select City", "Houston", "Dallas", "Austin"];
+
+    function populateStates() {
+      var countrySelect = document.getElementById("country");
+      var stateSelect = document.getElementById("state");
+
+      var selectedCountry = countrySelect.value;
+      var states;
+
+      switch (selectedCountry) {
+        case "USA":
+          states = usaStates;
+          break;
+        case "Canada":
+          states = canadaStates;
+          break;
+        case "India":
+          states = indiaStates;
+          break;
+        default:
+          states = [];
+          break;
+      }
+
+      stateSelect.innerHTML = "";
+
+      for (var i = 0; i < states.length; i++) {
+        var option = document.createElement("option");
+        option.value = states[i];
+        option.text = states[i];
+        stateSelect.appendChild(option);
+      }
+
+      populateCities();
+    }
+
+    function populateCities() {
+      var stateSelect = document.getElementById("state");
+      var citySelect = document.getElementById("city");
+
+      var selectedState = stateSelect.value;
+      var cities;
+
+      switch (selectedState) {
+        case "California":
+          cities = californiaCities;
+          break;
+        case "New York":
+          cities = newyorkCities;
+          break;
+        case "Texas":
+          cities = texasCities;
+          break;
+        default:
+          cities = [];
+          break;
+      }
+
+      citySelect.innerHTML = "";
+
+      for (var i = 0; i < cities.length; i++) {
+        var option = document.createElement("option");
+        option.value = cities[i];
+        option.text = cities[i];
+        citySelect.appendChild(option);
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <h2>Location Selector</h2>
+
+  <label for="country">Country:</label>
+  <select id="country" onchange="populateStates()">
+    <option value="Select Country">Select Country</option>
+    <option value="USA">USA</option>
+    <option value="Canada">Canada</option>
+    <option value="India">India</option>
+  </select>
+
+  <br>
+
+  <label for="state">State:</label>
+  <select id="state" onchange="populateCities()">
+    <option value="Select State">Select State</option>
+  </select>
+
+  <br>
+
+  <label for="city">City:</label>
+  <select id="city">
+    <option value="Select City">Select City</option>
+  </select>
+
+</body>
+</html>
